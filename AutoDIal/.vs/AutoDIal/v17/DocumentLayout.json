@@ -1,0 +1,75 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "A:\\Dev\\IntelliJ_IDEA\\Asqnw\\AutoDial\\AutoDIal\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{8D47CBE8-D1E2-48A0-BAB2-FC6C1315E9D1}|AutoDIal\\AutoDIal.vcxproj|A:\\Dev\\IntelliJ_IDEA\\Asqnw\\AutoDial\\AutoDIal\\AutoDIal\\AutoDIal.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{8D47CBE8-D1E2-48A0-BAB2-FC6C1315E9D1}|AutoDIal\\AutoDIal.vcxproj|solutionrelative:AutoDIal\\AutoDIal.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8D47CBE8-D1E2-48A0-BAB2-FC6C1315E9D1}|AutoDIal\\AutoDIal.vcxproj|A:\\Dev\\IntelliJ_IDEA\\Asqnw\\AutoDial\\AutoDIal\\AutoDIal\\TcpServer.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{8D47CBE8-D1E2-48A0-BAB2-FC6C1315E9D1}|AutoDIal\\AutoDIal.vcxproj|solutionrelative:AutoDIal\\TcpServer.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8D47CBE8-D1E2-48A0-BAB2-FC6C1315E9D1}|AutoDIal\\AutoDIal.vcxproj|A:\\Dev\\IntelliJ_IDEA\\Asqnw\\AutoDial\\AutoDIal\\AutoDIal\\TcpServer.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{8D47CBE8-D1E2-48A0-BAB2-FC6C1315E9D1}|AutoDIal\\AutoDIal.vcxproj|solutionrelative:AutoDIal\\TcpServer.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 2,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "TcpServer.cpp",
+              "DocumentMoniker": "A:\\Dev\\IntelliJ_IDEA\\Asqnw\\AutoDial\\AutoDIal\\AutoDIal\\TcpServer.cpp",
+              "RelativeDocumentMoniker": "AutoDIal\\TcpServer.cpp",
+              "ToolTip": "A:\\Dev\\IntelliJ_IDEA\\Asqnw\\AutoDial\\AutoDIal\\AutoDIal\\TcpServer.cpp",
+              "RelativeToolTip": "AutoDIal\\TcpServer.cpp",
+              "ViewState": "AQIAAGsAAAAAAAAAAAAAAG0AAABFAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-05-15T07:33:28.213Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "AutoDIal.cpp",
+              "DocumentMoniker": "A:\\Dev\\IntelliJ_IDEA\\Asqnw\\AutoDial\\AutoDIal\\AutoDIal\\AutoDIal.cpp",
+              "RelativeDocumentMoniker": "AutoDIal\\AutoDIal.cpp",
+              "ToolTip": "A:\\Dev\\IntelliJ_IDEA\\Asqnw\\AutoDial\\AutoDIal\\AutoDIal\\AutoDIal.cpp",
+              "RelativeToolTip": "AutoDIal\\AutoDIal.cpp",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAUAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-05-15T07:33:18.923Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "TcpServer.h",
+              "DocumentMoniker": "A:\\Dev\\IntelliJ_IDEA\\Asqnw\\AutoDial\\AutoDIal\\AutoDIal\\TcpServer.h",
+              "RelativeDocumentMoniker": "AutoDIal\\TcpServer.h",
+              "ToolTip": "A:\\Dev\\IntelliJ_IDEA\\Asqnw\\AutoDial\\AutoDIal\\AutoDIal\\TcpServer.h",
+              "RelativeToolTip": "AutoDIal\\TcpServer.h",
+              "ViewState": "AQIAAAYAAAAAAAAAAAAAABUAAAAfAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-05-13T12:16:38.285Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
