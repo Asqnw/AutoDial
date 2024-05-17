@@ -12,10 +12,7 @@ import android.telephony.TelephonyCallback;
 import android.telephony.TelephonyManager;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.BaseAdapter;
-import android.widget.ListView;
-import android.widget.TextView;
-import android.widget.Toast;
+import android.widget.*;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -46,6 +43,7 @@ public class PhoneCallActivity extends AppCompatActivity
     private boolean isFree = false;
     private long tel = 0;
     private PrintWriter out;
+    private Button nextButton;
     private final List<String> list = new ArrayList<>();
     private BaseAdapter adapter;
     private Toolbar toolbar;
@@ -67,6 +65,11 @@ public class PhoneCallActivity extends AppCompatActivity
         this.toolbar = this.findViewById(R.id.child_toolbar);
         this.toolbar.setTitle(R.string.app_name);
         ((TextView)this.findViewById(R.id.tips)).setText(MainActivity.authInfo);
+        (this.nextButton = this.findViewById(R.id.next)).setOnClickListener(v -> {
+            if (this.isFree && this.out != null)
+                this.out.println("ok");
+        });
+        this.nextButton.setText("报告服务器");
         ((ListView)this.findViewById(R.id.num_list)).setAdapter(this.adapter = new BaseAdapter() {
             @Override
             public int getCount()
@@ -154,11 +157,15 @@ public class PhoneCallActivity extends AppCompatActivity
         if (state == TelephonyManager.CALL_STATE_IDLE)
         {
             this.isFree = true;
-            if (this.out != null && this.tel != 0)
-                new Thread(() -> out.println("ok")).start();
+            this.nextButton.setEnabled(true);
+//            if (this.out != null && this.tel != 0)
+//                new Thread(() -> out.println("ok")).start();
         }
         else
+        {
+            this.nextButton.setEnabled(false);
             this.isFree = false;
+        }
     }
 
     private void call(long tel)
