@@ -66,8 +66,11 @@ public class PhoneCallActivity extends AppCompatActivity
         this.toolbar.setTitle(R.string.app_name);
         ((TextView)this.findViewById(R.id.tips)).setText(MainActivity.authInfo);
         (this.nextButton = this.findViewById(R.id.next)).setOnClickListener(v -> {
-            if (this.isFree && this.out != null)
-                this.out.println("ok");
+            this.nextButton.setEnabled(false);
+            new Thread(() -> {
+                if (this.isFree && this.out != null)
+                    this.out.println("ok");
+            }).start();
         });
         this.nextButton.setText("报告服务器");
         ((ListView)this.findViewById(R.id.num_list)).setAdapter(this.adapter = new BaseAdapter() {
