@@ -49,7 +49,7 @@ public class MainActivity extends AppCompatActivity
             {
                 JSONObject json;
                 final String deviceId = getDeviceID();
-                String decode = new String(Base64.decode(new HttpClient().postReqStr("https://product.asqnw.com/", Base64.encodeToString(new JSONObject().put("name", "autoDial").put("id", deviceId).put("ver", "1").toString().getBytes(), Base64.DEFAULT)), Base64.DEFAULT));
+                String decode = new String(Base64.decode(new HttpClient().postReqStr("https://product.asqnw.com/", Base64.encodeToString(new JSONObject().put("name", "autoDial").put("id", deviceId).put("ver", "2").toString().getBytes(), Base64.DEFAULT)), Base64.DEFAULT));
                 if ((json = new JSONObject(decode)).getString("code").equals("0"))
                 {
                     authInfo = json.getString("msg");
@@ -140,7 +140,7 @@ public class MainActivity extends AppCompatActivity
                 else if (json.getString("code").equals("1"))
                 {
                     new Handler(Looper.getMainLooper()).post(() -> {
-                        AlertDialog dialog = new AlertDialog.Builder(this).setTitle("未授权").setMessage("当前设备未授权，请复制设备ID后联系作者暗影之风处理\n\nID：" + deviceId).setPositiveButton("退出", null).setNegativeButton("复制", null).create();
+                        AlertDialog dialog = new AlertDialog.Builder(this).setTitle("未授权").setMessage("当前设备未授权，请复制设备ID后联系作者暗影之风处理\n\nID：" + deviceId).setPositiveButton("退出", null).setNegativeButton("复制", null).setCancelable(false).create();
                         dialog.show();
                         dialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener(v -> System.exit(0));
                         dialog.getButton(AlertDialog.BUTTON_NEGATIVE).setOnClickListener(v -> {
@@ -154,7 +154,7 @@ public class MainActivity extends AppCompatActivity
                 else if (json.getString("code").equals("2"))
                 {
                     new Handler(Looper.getMainLooper()).post(() -> {
-                        AlertDialog dialog = new AlertDialog.Builder(this).setTitle("有更新").setMessage("当前版本已经过期，联系作者暗影之风处理").setPositiveButton("退出", null).create();
+                        AlertDialog dialog = new AlertDialog.Builder(this).setTitle("有更新").setMessage("当前版本已经过期，联系作者暗影之风处理").setPositiveButton("退出", null).setCancelable(false).create();
                         dialog.show();
                         dialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener(v -> System.exit(0));
                         pd.dismiss();
@@ -164,7 +164,7 @@ public class MainActivity extends AppCompatActivity
                 {
                     String msg = json.getString("msg");
                     new Handler(Looper.getMainLooper()).post(() -> {
-                        AlertDialog dialog = new AlertDialog.Builder(this).setTitle("服务器提示").setMessage(msg).setPositiveButton("退出", null).create();
+                        AlertDialog dialog = new AlertDialog.Builder(this).setTitle("服务器提示").setMessage(msg).setPositiveButton("退出", null).setCancelable(false).create();
                         dialog.show();
                         dialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener(v -> System.exit(0));
                         pd.dismiss();
@@ -174,7 +174,7 @@ public class MainActivity extends AppCompatActivity
             catch (HttpClient.HttpException.UnAuthorize | HttpClient.HttpException.Forbidden | HttpClient.HttpException.Unknown | HttpClient.HttpException.ServerError | UnknownHostException | JSONException ignored)
             {
                 new Handler(Looper.getMainLooper()).post(() -> {
-                    AlertDialog dialog = new AlertDialog.Builder(this).setTitle("获取授权异常").setMessage("无法获取授权信息，请联系作者暗影之风处理").setPositiveButton("退出", null).create();
+                    AlertDialog dialog = new AlertDialog.Builder(this).setTitle("获取授权异常").setMessage("无法获取授权信息，请联系作者暗影之风处理").setPositiveButton("退出", null).setCancelable(false).create();
                     dialog.show();
                     dialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener(v -> System.exit(0));
                     pd.dismiss();

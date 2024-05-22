@@ -1,13 +1,20 @@
 package asqnw.project;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Base64;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.atomic.AtomicReference;
 
 public class Main
 {
@@ -35,6 +42,37 @@ public class Main
         }
         if (port == 10000)
             System.out.println("1.1未设置端口参数，使用默认参数10000");
+        System.out.println("二、加载授权和更新文件");
+        AtomicReference<JSONObject> info = new AtomicReference<>();
+        try
+        {
+            String content = Files.readString(Paths.get("author.json"));
+            info.set(new JSONObject(content));
+            if (info.get().isEmpty())
+                throw new JSONException("File Message is empty");
+        }
+        catch (IOException ignored)
+        {
+            System.out.println("2.1授权和更新文件不存在，退出执行");
+            return;
+        }
+        catch (JSONException ignored)
+        {
+            System.out.println("2.1授权和更新文件异常，退出执行");
+            return;
+        }
+        finally
+        {
+            System.out.println("示例文件样本：" + new JSONObject() {{
+                this.put("ver", "1").put("auth", new JSONArray() {{
+                    this.put(new JSONObject() {{
+                        this.put("id", "xxxxx-xxxxx").put("name", "admin").put("time", String.valueOf(System.currentTimeMillis()));
+                    }}).put(new JSONObject() {{
+                        this.put("id", "xxxxx-xxxxx-xxxxx").put("name", "admin").put("time", String.valueOf(System.currentTimeMillis()));
+                    }});
+                }});
+            }});
+        }
         System.out.println("准备完成，启动服务器");
         new HttpServer().start(request -> {
             HashMap<String, String> response = new HashMap<>();
@@ -58,10 +96,43 @@ public class Main
                         String ver = json.getString("ver");
                         if (name.equals("autoDial"))
                         {
-                            response.put("200 OK", Base64.getEncoder().encodeToString(new JSONObject().put("code", "0").put("msg", "test").toString().getBytes()).replaceAll(" ", "").replaceAll("\n", ""));
+                            String content = Files.readString(Paths.get("author.json"));
+                            info.set(new JSONObject(content));
+                            if (info.get().getString("ver").equals(ver))
+                            {
+                                JSONArray auth = info.get().getJSONArray("auth");
+                                boolean ok = false;
+                                for (int i = 0; i < auth.length(); i++)
+                                {
+                                    long time;
+                                    JSONObject jo = auth.getJSONObject(i);
+                                    if (jo.getString("id").equals(id) && (time = Long.parseLong(jo.getString("time"))) > System.currentTimeMillis())
+                                    {
+                                        response.put("200 OK", Base64.getEncoder().encodeToString(new JSONObject().put("code", "0").put("msg", "你好！" +jo.getString("name") + "\n\n欢迎使用AutoDial程序\n让我们一起向暗影致敬\n授权到期时间" + new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault()).format(time)).toString().getBytes()).replaceAll(" ", "").replaceAll("\n", ""));
+                                        ok = true;
+                                        break;
+                                    }
+                                    else if (jo.getString("id").equals(id))
+                                    {
+                                        response.put("200 OK", Base64.getEncoder().encodeToString(new JSONObject().put("code", "1").toString().getBytes()).replaceAll(" ", "").replaceAll("\n", ""));
+                                        ok = true;
+                                        break;
+                                    }
+                                }
+                                if (!ok)
+                                    response.put("200 OK", Base64.getEncoder().encodeToString(new JSONObject().put("code", "1").toString().getBytes()).replaceAll(" ", "").replaceAll("\n", ""));
+                            }
+                            else
+                            {
+                                response.put("200 OK", Base64.getEncoder().encodeToString(new JSONObject().put("code", "2").toString().getBytes()).replaceAll(" ", "").replaceAll("\n", ""));
+                            }
+                        }
+                        else
+                        {
+                            response.put("403 Forbidden", "");
                         }
                     }
-                    catch (JSONException ignored)
+                    catch (JSONException | IOException ignored)
                     {
                         response.put("403 Forbidden", "");
                     }
